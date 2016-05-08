@@ -16,6 +16,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import static javafx.scene.paint.Color.*;
@@ -99,36 +100,54 @@ public class MemSim2 extends Application {
         
 
         /*
-            System stack box
+           PageFile box
         */
         
         HBox pageFile = new HBox(0);  //0 = spacing between nodes
-        Label stack = new Label();
-        stack.setText("Program Stack");
-        stack.setLayoutX(10);
-        stack.setLayoutY(30);
+        Label pageFileLabel = new Label();
+        pageFileLabel.setText("Program Stack ");
+        pageFileLabel.setLayoutX(297);
+        pageFileLabel.setLayoutY(395);
         
         
-        pageFile.setLayoutX(27.0);
-        pageFile.setLayoutY(55.0);
+        pageFile.setLayoutX(300);
+        pageFile.setLayoutY(400);
         
         
 
         
-                     Button btn = new Button();
-        btn.setText("Say 'Hello World'");
+
         
         
-        pageFile.getChildren().addAll(label, page, bits, btn);  //add 3 grids  
+        pageFile.getChildren().addAll(label, page, bits);  //add 3 grids  
         /*
-        End system stack box
+        End pageFile box***
         */
         
         
         
+        Button btnSim1 = new Button();
+        btnSim1.setText("Sim 1");
+        
+        Button btnSim2 = new Button();
+        btnSim2.setText("Sim 2");
+
+        Button btnSim3 = new Button();
+        btnSim2.setText("Sim 3");
+
+
+
+        VBox buttonBox = new VBox(20);
+        buttonBox.getChildren().addAll(btnSim1, btnSim2,btnSim3);
+        buttonBox.setLayoutX(25);
+        buttonBox.setLayoutY(25);
+
+
+
+//add everything to pane before adding to scene
         Pane pane = new Pane();
         
-        pane.getChildren().addAll(stack, pageFile);
+        pane.getChildren().addAll(pageFileLabel, pageFile, buttonBox);
         
         //pane.setPadding(insets);
         
@@ -137,7 +156,7 @@ public class MemSim2 extends Application {
         
         
         
-        Scene scene = new Scene(pane, 500, 500, DODGERBLUE);
+        Scene scene = new Scene(pane, 800, 800, DODGERBLUE);
         
         
         primaryStage.setTitle("Memory Sim");
@@ -146,7 +165,7 @@ public class MemSim2 extends Application {
         
         
         
-               btn.setOnAction(new EventHandler<ActionEvent>() {
+               btnSim1.setOnAction(new EventHandler<ActionEvent>() {
             
             @Override
             public void handle(ActionEvent event) {
