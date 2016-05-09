@@ -74,7 +74,33 @@ public class AddressGenerator {
         
         return bits;
         }
+    
+
+
+    public static String[] numberGenerator(int size){
+         String[] numbers = new String[size];
+
+        for(int i=0; i< size; i++){
+            numbers[i] = Integer.toString(i);
+        }
+        
+        return numbers;
     }
+    
+
+    public static String[] letterGenerator(int size){
+        String[] letters = new String[size];
+        
+        for(int i=0; i<size; i++){
+            letters[i] = "A";
+        }
+        
+        return letters;
+    }
+
+
+
+}
     
     
 
