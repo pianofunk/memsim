@@ -29,15 +29,15 @@ public class ShapeCreator {
         
         
         
-        public ShapeCreator(String[] addresses, int memoryLength, String prefix){
-        
-            InvalidationListner myListner = new InvalidationListener(){
-                @Override
-                public void invalidated(Observable observable) {
-                    text.setStyle("-fx-background-color: green");
-                }
-                
-            };
+       public ShapeCreator(String[] addresses, int memoryLength, String prefix){
+//        
+//            InvalidationListner myListner = new InvalidationListener(){
+//                @Override
+//                public void invalidated(Observable observable) {
+//                    text.setStyle("-fx-background-color: green");
+//                }
+//                
+//            };
             
             
             
@@ -51,7 +51,7 @@ public class ShapeCreator {
                 text.setId(prefix + text.getText());
                 //System.out.println(text.getId());
                 
-                text.textProperty().addListener(myListener);
+              //  text.textProperty().addListener(myListener);
                 
                     gridPane.add(rectangle, col, row);
                     gridPane.add(text, col, row); 
