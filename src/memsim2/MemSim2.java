@@ -60,33 +60,39 @@ public class MemSim2 extends Application {
         
         
         
-        //********Begin create label grid**********************
-        String[] lbl = AddressGenerator.labelGenerator(15);
+        //********Begin create logical page number grid**********************
+        String[] pg = AddressGenerator.labelGenerator(15);
         
-        ShapeCreator labelCreator = new ShapeCreator(lbl, 15,"label");
+        ShapeCreator logicalPageNumber = new ShapeCreator(pg, 15,"logicalPageNumber");
         
-        GridPane label = labelCreator.getGrid();        
+        GridPane logicalPageNumberGrid = logicalPageNumber.getGrid();        
         //label.setPadding(insets);
-        label.setGridLinesVisible(true);
+        logicalPageNumberGrid.setGridLinesVisible(true);
         
         
-        //*******End create label grid***************
+        //*******End create logical page number grid***************
         
         
-        //******Begin create single bit grid*************
+        //******Begin create logical  grid*************
         
-        String[] b = AddressGenerator.bitGenerator(15);
+        String[] data = AddressGenerator.bitGenerator(15);
         
-        ShapeCreator bitCreator = new ShapeCreator(b, 15,"bit");
+        ShapeCreator logicalData = new ShapeCreator(data, 15,"logicalData");
         
-        GridPane bits = bitCreator.getGrid();
+        GridPane logicalDataGrid = logicalData.getGrid();
         //bits.setPadding(insets);
-        bits.setGridLinesVisible(true);
+        logicalDataGrid.setGridLinesVisible(true);
         
-        //*****End create singe bit grid
+        //*****End create logical data grid
         
         
+        //***Begin create page table A page # ******
         
+        String[] pageA = AddressGenerator.labelGenerator(15);
+        
+        ShapeCreator pageTableAPageNumber = new ShapeCreator(pageA, 15, "pageTableAPageNumber");
+        GridPane  pageTableAPageNumberGrid = pageTableAPageNumber.getGrid();
+        pageTableAPageNumberGrid.setGridLinesVisible(true);
         
         
         Font font = new Font("SansSerif",10);
@@ -98,56 +104,94 @@ public class MemSim2 extends Application {
 //        Line line = new Line();
 //        Arc arc = new Arc(1.0, 1.0, 30.0, 28.0, 43.2, 56.4);
         
+        
+    /*
+        logical memory hbox
+    */
+
+        HBox logicalMemory = new HBox(0);
+        Label logicalMemoryLabel = new Label();
+        logicalMemoryLabel.setText("Logical Memory");
+        logicalMemoryLabel.setLayoutX(39);
+        logicalMemoryLabel.setLayoutY(174);
+        
+        logicalMemory.setStyle("-fx-background-color: yellow");
+        logicalMemory.setLayoutX(39);
+        logicalMemory.setLayoutY(192);
+
 
         /*
-           PageFile box
+           PageTableA box
         */
         
-        HBox pageFile = new HBox(0);  //0 = spacing between nodes
-        Label pageFileLabel = new Label();
-        pageFileLabel.setText("Program Stack ");
-        pageFileLabel.setLayoutX(297);
-        pageFileLabel.setLayoutY(395);
+        HBox pageTableA = new HBox(0);  //0 = spacing between nodes
+        Label pageTableALabel = new Label();
+        pageTableALabel.setText("Page Table A");
+        pageTableALabel.setLayoutX(394);
+        pageTableALabel.setLayoutY(174);
         
-        
-        pageFile.setLayoutX(300);
-        pageFile.setLayoutY(400);
+        pageTableA.setStyle("-fx-background-color: lemonchiffon");
+        pageTableA.setLayoutX(394);
+        pageTableA.setLayoutY(192);
         
         
 
         
 
         
-        
-        pageFile.getChildren().addAll(label, page, bits);  //add 3 grids  
+        logicalMemory.getChildren().addAll(logicalPageNumberGrid, logicalDataGrid);
+        pageTableA.getChildren().addAll(pageTableAPageNumberGrid);  //add 3 grids  
         /*
         End pageFile box***
         */
+        
+        /*
+            PageTableB box
+        */
+        
+        HBox pageTableB = new HBox(0);  //0 = spacing between nodes
+        Label pageTableBLabel = new Label();
+        pageTableBLabel.setText("Program Stack");
+        pageTableBLabel.setLayoutX(394);
+        pageTableBLabel.setLayoutY(480);
+        
+        pageTableB.setStyle("-fx-background-color: lemonchiffon");
+        pageTableB.setLayoutX(394);
+        pageTableB.setLayoutY(484);
         
         
         
         Button btnSim1 = new Button();
         btnSim1.setText("Sim 1");
+        btnSim1.setStyle("-fx-background-color: lemonchiffon");
         
         Button btnSim2 = new Button();
         btnSim2.setText("Sim 2");
-
+        btnSim2.setStyle("-fx-background-color: lemonchiffon");
+        
         Button btnSim3 = new Button();
-        btnSim2.setText("Sim 3");
+        btnSim3.setText("Sim 3");
+        btnSim3.setStyle("-fx-background-color: lemonchiffon");
+        
+        Button btnSim4 = new Button();
+        btnSim4.setText("Sim 4");
+        btnSim4.setStyle("-fx-background-color: lemonchiffon");
 
 
-
-        VBox buttonBox = new VBox(20);
-        buttonBox.getChildren().addAll(btnSim1, btnSim2,btnSim3);
-        buttonBox.setLayoutX(25);
-        buttonBox.setLayoutY(25);
-
+        HBox buttonBox = new HBox(10);
+        buttonBox.setPadding(insets);
+        buttonBox.setMinHeight(60);
+        buttonBox.setMinWidth(1000);
+        buttonBox.getChildren().addAll(btnSim1, btnSim2,btnSim3, btnSim4);
+        buttonBox.setLayoutX(39);
+        buttonBox.setLayoutY(38);
+        buttonBox.setStyle("-fx-background-color: indianred");
 
 
 //add everything to pane before adding to scene
         Pane pane = new Pane();
         
-        pane.getChildren().addAll(pageFileLabel, pageFile, buttonBox);
+        pane.getChildren().addAll(logicalMemory, logicalMemoryLabel, pageTableALabel, pageTableA, buttonBox);
         
         //pane.setPadding(insets);
         
@@ -156,7 +200,7 @@ public class MemSim2 extends Application {
         
         
         
-        Scene scene = new Scene(pane, 800, 800, DODGERBLUE);
+        Scene scene = new Scene(pane, 800, 1200, DODGERBLUE);
         
         
         primaryStage.setTitle("Memory Sim");
