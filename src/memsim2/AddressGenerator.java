@@ -5,6 +5,7 @@
  */
 package memsim2;
 
+
 /**
  *
  * @author midget
@@ -12,6 +13,71 @@ package memsim2;
 public class AddressGenerator {
     //cllass generates addresses
     
+
+    //create an array of strings in the format {"1","2","3"..."n"}
+    public static String[] labelGenerator(int size){
+        
+        String[] label = new String[size];
+        
+        for(int i = 0; i < size; i++){
+            label[i] = Integer.toString(i);
+        }
+        
+        return label;
+    }
+    
+    //create an array of 0s
+    public static String[] bitGenerator(int size){
+        String[] bits = new String[size];
+        
+        for(int i= 0; i< size; i++){
+            bits[i] = Integer.toString(0);
+        }
+        
+        return bits;
+        }
+
+    
+
+    
+    
+    public static String[] mainMemoryGenerator(int size){
+        
+        String[] mainMemory = new String[size];
+        
+        for(int i = 0; i < size; i++){
+            mainMemory[i] = Integer.toString(i);
+        }
+        
+        return mainMemory;
+    }
+    
+
+
+    public static String[] numberGenerator(int size){
+         String[] numbers = new String[size];
+
+        for(int i=0; i< size; i++){
+            numbers[i] = Integer.toString(i);
+        }
+        
+        return numbers;
+
+    }
+
+
+    
+
+    public static String[] letterGenerator(int size){
+        String[] letters = new String[size];
+        
+        for(int i=0; i<size; i++){
+            letters[i] = "A";
+        }
+        
+        return letters;
+    }
+
     
     //create an array of strings in the format {"0001","0010","0011","0100",...}
     public static String[] addressGenerator(int size){
@@ -52,53 +118,6 @@ public class AddressGenerator {
 }
     
     
-    //create an array of strings in the format {"1","2","3"..."n"}
-    public static String[] labelGenerator(int size){
-        
-        String[] label = new String[size];
-        
-        for(int i = 0; i < size; i++){
-            label[i] = Integer.toString(i);
-        }
-        
-        return label;
-    }
-    
-    
-    public static String[] bitGenerator(int size){
-        String[] bits = new String[size];
-        
-        for(int i= 0; i< size; i++){
-            bits[i] = Integer.toString(0);
-        }
-        
-        return bits;
-        }
-    
-
-
-    public static String[] numberGenerator(int size){
-         String[] numbers = new String[size];
-
-        for(int i=0; i< size; i++){
-            numbers[i] = Integer.toString(i);
-        }
-        
-        return numbers;
-    }
-    
-
-    public static String[] letterGenerator(int size){
-        String[] letters = new String[size];
-        
-        for(int i=0; i<size; i++){
-            letters[i] = "A";
-        }
-        
-        return letters;
-    }
-
-
 
 }
     

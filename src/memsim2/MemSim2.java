@@ -53,8 +53,8 @@ public class MemSim2 extends Application {
         GridPane page = pageCreator.getGrid();
         
         //page.setPadding(insets);
-        page.setGridLinesVisible(true);
-        
+        page.setGridLinesVisible(true); 
+       
         
         //************End create page grid *********************
         
@@ -75,45 +75,126 @@ public class MemSim2 extends Application {
         
         //******Begin create logical  grid*************
         
+
+        String[] b = AddressGenerator.bitGenerator(15);
+   
+        ShapeCreator bitCreator = new ShapeCreator(b, 15,"bit");
+
         String[] data = AddressGenerator.bitGenerator(15);
         
         ShapeCreator logicalData = new ShapeCreator(data, 15,"logicalData");
-        
+       
         GridPane logicalDataGrid = logicalData.getGrid();
         //bits.setPadding(insets);
+
         logicalDataGrid.setGridLinesVisible(true);
-        
+
+
+        logicalDataGrid.setGridLinesVisible(true);
+
         //*****End create logical data grid
+
         
+        //*****End create single bit grid
+        
+        //***Begin create main memory grid****
+        
+        String[] m = AddressGenerator.addressGenerator(256);
+        ShapeCreator mainM = new ShapeCreator(m, 256,"main");
+        GridPane mainMemory = mainM.getGrid();
+        mainMemory.setGridLinesVisible(true);
         
         //***Begin create page table A page # ******
         
         String[] pageA = AddressGenerator.labelGenerator(15);
         
-        ShapeCreator pageTableAPageNumber = new ShapeCreator(pageA, 15, "pageTableAPageNumber");
+        ShapeCreator pageTableAPageNumber = new ShapeCreator(pageA, 15, 2);
         GridPane  pageTableAPageNumberGrid = pageTableAPageNumber.getGrid();
         pageTableAPageNumberGrid.setGridLinesVisible(true);
         
         
-          //***Begin create page table A page # ******
+          //***Begin create page table B page # ******
           String[] pageB = AddressGenerator.labelGenerator(15);
-          ShapeCreator pageTableBPageNumber = new ShapeCreator(pageB, 15, "pageTableBPageNumber");
+          ShapeCreator pageTableBPageNumber = new ShapeCreator(pageB, 15, 2);
           GridPane pageTableBPageNumberGrid = pageTableBPageNumber.getGrid();
           pageTableBPageNumberGrid.setGridLinesVisible(true);
+          
+          
+          //***Begin create pageTableAframe****
+          String[] frameA = AddressGenerator.numberGenerator(15);
+          ShapeCreator pageTableAFrameNumber = new ShapeCreator(frameA, 15, "pageTableAFrame");
+          GridPane pageTableAFrameNumberGrid = pageTableAFrameNumber.getGrid();
+          pageTableAFrameNumberGrid.setGridLinesVisible(true);
+          
+          
+        //***Begin create pageTableBframe****
+          String[] frameB = AddressGenerator.numberGenerator(15);
+          ShapeCreator pageTableBFrameNumber = new ShapeCreator(frameB, 15, "pageTableAFrame");
+          GridPane pageTableBFrameNumberGrid = pageTableBFrameNumber.getGrid();
+          pageTableBFrameNumberGrid.setGridLinesVisible(true);
+          
+          //c = 1 for validationBit  c = 2 for pageTableId  c = 3 for Physical memory
+          //***Begin create pageTableAValidBit ****
+          String[] validA = AddressGenerator.bitGenerator(15);
+          ShapeCreator pageTableAValidBit = new ShapeCreator(validA, 15, 1);
+          GridPane pageTableAValidBitGrid = pageTableAValidBit.getGrid();
+          pageTableAValidBitGrid.setGridLinesVisible(true);
+          
+          
+          //***Begin create pageTableBValidBit ***
+          String[] validB = AddressGenerator.bitGenerator(15);
+          ShapeCreator pageTableBValidBit = new ShapeCreator(validB, 15, 1);
+          GridPane pageTableBValidBitGrid = pageTableBValidBit.getGrid();
+          pageTableBValidBitGrid.setGridLinesVisible(true);
+          
+          
+          
+        //***Begin create pageTableADirtyBit ****
+          String[] dirtyA = AddressGenerator.bitGenerator(15);
+          ShapeCreator pageTableADirtyBit = new ShapeCreator(dirtyA, 15, "pageTableADirty");
+          GridPane pageTableADirtyBitGrid = pageTableADirtyBit.getGrid();
+          pageTableADirtyBitGrid.setGridLinesVisible(true);
+          
+          
+          //***Begin create pageTableBDirtyBit ***
+          String[] dirtyB = AddressGenerator.bitGenerator(15);
+          ShapeCreator pageTableBDirtyBit = new ShapeCreator(dirtyB, 15, "pageTableBDirty");
+          GridPane pageTableBDirtyBitGrid = pageTableBDirtyBit.getGrid();
+          pageTableBDirtyBitGrid.setGridLinesVisible(true);
         
                 //******Begin create phsycial page  grid*************
-                
-                
-        
-        String[] phys = AddressGenerator.bitGenerator(15);
-        
-        ShapeCreator physicalPage = new ShapeCreator(phys, 15,"phsicalPage");
-        
+ 
+        String[] phys = AddressGenerator.mainMemoryGenerator(15);
+        ShapeCreator physicalPage = new ShapeCreator(phys, 15,3);
         GridPane physicalPageGrid = physicalPage.getGrid();
         //bits.setPadding(insets);
         physicalPageGrid.setGridLinesVisible(true);
         
+        
+        String[] pData = AddressGenerator.mainMemoryGenerator(15);
+        ShapeCreator physicalData = new ShapeCreator(pData, 15, "phsyicalData");
+        GridPane physicalDataGrid = physicalData.getGrid();
+        physicalDataGrid.setGridLinesVisible(true);
+        
+        
+        
+        
         //*****End create logical data grid
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         
         Font font = new Font("SansSerif",10);
         
@@ -151,16 +232,23 @@ public class MemSim2 extends Application {
         pageTableALabel.setLayoutX(394);
         pageTableALabel.setLayoutY(174);
         
-        pageTableA.setStyle("-fx-background-color: lemonchiffon");
-        pageTableA.setLayoutX(394);
-        pageTableA.setLayoutY(192);
+
         
 
         
-        pageTableA.getChildren().addAll(pageTableAPageNumberGrid);  //add 3 grids  
+
+        pageTableA.setStyle("-fx-background-color: lemonchiffon");
+        pageTableA.setLayoutX(394);
+        pageTableA.setLayoutY(192);
+
+
+        
+        pageTableA.getChildren().addAll(pageTableAPageNumberGrid, pageTableAFrameNumberGrid, pageTableAValidBitGrid, pageTableADirtyBitGrid);  //add 3 grids  
         /*
         End pageTableA box***
         */
+        
+        
         
         /*
             PageTableB Hbox
@@ -176,7 +264,7 @@ public class MemSim2 extends Application {
         pageTableB.setLayoutX(394);
         pageTableB.setLayoutY(484);
         
-        pageTableB.getChildren().add(pageTableBPageNumberGrid);
+        pageTableB.getChildren().addAll(pageTableBPageNumberGrid, pageTableBFrameNumberGrid, pageTableBValidBitGrid, pageTableBDirtyBitGrid);
         
         
         //end PageTableB
@@ -197,7 +285,7 @@ public class MemSim2 extends Application {
         physicalMemory.setLayoutX(749);
         physicalMemory.setLayoutY(192);
         
-        physicalMemory.getChildren().addAll(physicalPageGrid);
+        physicalMemory.getChildren().addAll(physicalPageGrid, physicalDataGrid);
         
         //end physical memory hbox
         
@@ -260,8 +348,8 @@ public class MemSim2 extends Application {
             public void handle(ActionEvent event) {
                 System.out.println("Hello World!");
                 Text changeNode = new Text(); 
+                
                 changeNode = (Text) scene.lookup("#page0010"); //this searches for CSS id
-                System.out.println(changeNode.getLayoutX() + " Y Pos: " + changeNode.getLayoutX());
                 changeNode.setText("Found");
                // changeNode.setText("change");   //line throws error
                 

@@ -26,6 +26,7 @@ public class ShapeCreator {
         Rectangle rectangle = new Rectangle();
         GridPane gridPane = new GridPane();
         Insets insets = new Insets(10.0,10.0,10.0,10.0);
+        Id id = new Id();
         
         
         
@@ -50,14 +51,55 @@ public class ShapeCreator {
                 text = new Text(addresses[i]);
                 text.setId(prefix + text.getText());
                 //System.out.println(text.getId());
+
+                //text.textProperty().addListener(listener);
+                
+
                 
               //  text.textProperty().addListener(myListener);
+
                 
                     gridPane.add(rectangle, col, row);
                     gridPane.add(text, col, row); 
                     
+
+
+                row++;
+            
+                if((i+1)% memoryLength == 0){
+                    col++;
+                    row = 0;
+                }
+        }
+        }
+        
+       
+       
+        public ShapeCreator(String[] addresses, int memoryLength, int c){
+
+   
+            for(int i = 0; i < addresses.length; i++){
+                
+                rectangle = new Rectangle(40, 15, BLANCHEDALMOND);
+
+                
+                
+                text = new Text(addresses[i]);
+                
+                if(c == 1)
+                text.setId(id.validationBitId(i));
+                
+                if(c ==2)
+                text.setId(id.pageTableId(i));
+                
+                if(c==3)
+                text.setId(id.physicalMemoryId(i));
+
+             
+                    gridPane.add(rectangle, col, row);
+                    gridPane.add(text, col, row); 
                     
-                    
+
 
                 row++;
             
@@ -69,8 +111,12 @@ public class ShapeCreator {
         }
         
         
+        
+        
+        
+        
+        
         public GridPane getGrid(){
             return gridPane;
         }
-
 }
