@@ -13,6 +13,7 @@ package memsim2;
 public class AddressGenerator {
     //cllass generates addresses
     
+    static String[] alphabet = {"A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"};
 
     //create an array of strings in the format {"1","2","3"..."n"}
     public static String[] labelGenerator(int size){
@@ -72,7 +73,7 @@ public class AddressGenerator {
         String[] letters = new String[size];
         
         for(int i=0; i<size; i++){
-            letters[i] = "A";
+            letters[i] = alphabet[i];
         }
         
         return letters;

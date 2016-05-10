@@ -12,13 +12,9 @@ import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
 import static javafx.scene.paint.Color.*;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
@@ -45,7 +41,7 @@ public class MemSim2 extends Application {
         //String[] address = {"000", "001","010","011","101"};
 
         //create an array of given length of sequential binary numbers represented as strings
-        String[] s = AddressGenerator.addressGenerator(15);
+        String[] s = AddressGenerator.letterGenerator(15);
         
         //create gridPane
         ShapeCreator pageCreator = new ShapeCreator(s, 16,"page");
@@ -76,11 +72,11 @@ public class MemSim2 extends Application {
         //******Begin create logical  grid*************
         
 
-        String[] b = AddressGenerator.bitGenerator(15);
+        String[] b = AddressGenerator.letterGenerator(15);
    
         ShapeCreator bitCreator = new ShapeCreator(b, 15,"bit");
 
-        String[] data = AddressGenerator.bitGenerator(15);
+        String[] data = AddressGenerator.letterGenerator(15);
         
         ShapeCreator logicalData = new ShapeCreator(data, 15,"logicalData");
        
@@ -171,7 +167,7 @@ public class MemSim2 extends Application {
         physicalPageGrid.setGridLinesVisible(true);
         
         
-        String[] pData = AddressGenerator.mainMemoryGenerator(15);
+        String[] pData = AddressGenerator.letterGenerator(15);
         ShapeCreator physicalData = new ShapeCreator(pData, 15, "phsyicalData");
         GridPane physicalDataGrid = physicalData.getGrid();
         physicalDataGrid.setGridLinesVisible(true);
@@ -179,7 +175,7 @@ public class MemSim2 extends Application {
         
         
         
-        //*****End create logical data grid
+        //*****End create physical data grid
         
         
         
